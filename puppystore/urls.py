@@ -14,18 +14,17 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from django.conf.urls import url
+from django.urls import path, include, re_path
 from puppy.views import *
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api/v1/puppies/(?P<pk>[0-9]+)/$',
+    re_path(r'^api/v1/puppies/(?P<pk>[0-9]+)/$',
         get_delete_update_puppy, name='get_delete_update_puppy'),
-    url(r'^api/v1/puppies/$', get_post_puppies, name='get_post_puppies'),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    re_path(r'^api/v1/puppies/$', get_post_puppies, name='get_post_puppies'),
+    re_path(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('api/token/', TokenObtainPairView.as_view(), name='Token_Obtain_Pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(),
          name='Token_Refresh_View'),

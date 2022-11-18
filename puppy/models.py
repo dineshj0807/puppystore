@@ -15,3 +15,13 @@ class Puppy(models.Model):
 
     def get_breed(self):
         return self.name + ' belongs to ' + self.breed + ' breed'
+
+class Student(models.Model):
+    name = models.CharField(max_length=30)
+    marks = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        db_table = 'Student'

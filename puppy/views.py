@@ -5,7 +5,7 @@ from .models import Puppy
 from .serializers import PuppySerializer
 
 
-@api_view(['GET', 'DELETE', 'PUT'])
+@api_view(['GET', 'DELETE'])
 def get_delete_update_puppy(request, pk):
     try:
         puppy = Puppy.objects.get(pk=pk)
